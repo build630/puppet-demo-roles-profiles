@@ -1,5 +1,5 @@
 class role_default {
 
-  include profile_common
+  include ::profile_common
 
 }
