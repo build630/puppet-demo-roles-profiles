@@ -1,0 +1,10 @@
+{
+  "name": "yo61-role_default",
+  "version": "0.1.0",
+  "author": "Robin Bowes <robin.bowes@yo61.com>",
+  "license": "Licensed under (Apache 2.0)",
+  "summary": "default role",
+  "source": "https://github.com/yo61/puppet-envs-roles-profiles",
+  "tags": ["default", "yo61", "role"],
+  "dependencies": [ ]
+}
