@@ -1,0 +1,10 @@
+{
+  "name": "yo61-env_production",
+  "version": "0.1.0",
+  "author": "Robin Bowes <robin.bowes@yo61.com>",
+  "license": "Licensed under (Apache 2.0)",
+  "summary": "default environment for unclassified nodes",
+  "source": "https://github.com/yo61/puppet-envs-roles-profiles",
+  "tags": ["production", "yo61", "env"],
+  "dependencies": [ ]
+}
