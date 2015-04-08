@@ -1,0 +1,10 @@
+{
+  "name": "yo61-profile_common",
+  "version": "0.1.0",
+  "author": "Robin Bowes <robin.bowes@yo61.com>",
+  "license": "Licensed under (Apache 2.0)",
+  "summary": "Apply common profile",
+  "source": "https://github.com/yo61/puppet-envs-roles-profiles",
+  "tags": ["common", "yo61", "profile"],
+  "dependencies": [ ]
+}
