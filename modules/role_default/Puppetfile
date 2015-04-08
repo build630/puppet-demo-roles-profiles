@@ -3,7 +3,7 @@
 
 forge "https://forgeapi.puppetlabs.com"
 
-# list all the roles that are included in this environment
+# list all the profiles that are included in this role
 mod 'yo61-profile_common',
   :git => 'git@github.com:yo61/puppet-envs-roles-profiles.git',
   :path => 'modules/profile_common'
