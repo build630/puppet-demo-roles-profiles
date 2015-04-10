@@ -43,6 +43,7 @@ PARALLEL=${PARALLEL_CMD:-parallel}
 PUPPET=${PUPPET_CMD:-puppet}
 R10K=${R10K_CMD:-r10k}
 RM=${RM_CMD:-rm}
+CACHE_DIR=${CACHE_DIR:-/var/tmp/librarian-puppet/cache}
 
 # make sure required commands are present
 CMDS=(
@@ -92,6 +93,9 @@ ENV_PATH_PARENT=$("$DIRNAME" "$ENV_PATH")
 REAL_ENV_PATH="${ENV_PATH_PARENT}/${REAL_ENV_DIR_NAME}"
 "$MKDIR" -p "$REAL_ENV_PATH"
 
+# create the cache dir
+"$MKDIR" -p "$CACHE_DIR"
+
 # create a new dir to hold the environments
 NEW_ENV_DIR=$("$MKTEMP" --directory --tmpdir="$REAL_ENV_PATH" "${ENV_DIR_NAME}.$(date -Isec).XXX")
 "$CHMOD" 0755 "$NEW_ENV_DIR"
@@ -106,7 +110,7 @@ PUPPETFILE_DIR="${REAL_ENV_DIR_NAME}/${NEW_ENV_DIR_NAME}" "$R10K" puppetfile ins
 # pull down all the modules in each environment
 "$PARALLEL" --no-notice "\
   pushd '{}' > /dev/null && \
-  '$LIBRARIAN_PUPPET' install --no-use-v1-api && \
+  LIBRARIAN_PUPPET_PATH=modules LIBRARIAN_PUPPET_TMP='$CACHE_DIR' '$LIBRARIAN_PUPPET' install --no-use-v1-api --strip-dot-git && \
   \"$RM\" -rf .tmp && \
   popd > /dev/null \
 " < <(find "$NEW_ENV_DIR" -maxdepth 1 -mindepth 1 -type d)
