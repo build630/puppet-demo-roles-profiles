@@ -100,12 +100,9 @@ REAL_ENV_PATH="${ENV_PATH_PARENT}/${REAL_ENV_DIR_NAME}"
 NEW_ENV_DIR=$("$MKTEMP" --directory --tmpdir="$REAL_ENV_PATH" "${ENV_DIR_NAME}.$(date -Isec).XXX")
 "$CHMOD" 0755 "$NEW_ENV_DIR"
 
-# Get the basename of the new dir
-NEW_ENV_DIR_NAME=$("$BASENAME" "$NEW_ENV_DIR")
-
 # pull down the environments defined in the top-level Puppetfile
 cd "$CONF_DIR"
-PUPPETFILE_DIR="${REAL_ENV_DIR_NAME}/${NEW_ENV_DIR_NAME}" "$R10K" puppetfile install
+PUPPETFILE_DIR="${NEW_ENV_DIR}" "$R10K" puppetfile install
 
 # pull down all the modules in each environment
 "$PARALLEL" --no-notice "\
